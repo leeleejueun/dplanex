@@ -24,7 +24,15 @@
   <body>
     <!--aside-->
 
-    <aside></aside>
+    <aside>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+    </aside>
 
     <!--main-->
     <main>
@@ -337,18 +345,11 @@
       window.addEventListener('load',function(){
         const elMain = document.querySelector('main'),
               elAside = document.querySelector('aside'),
-              elCon = document.querySelectorAll('main > div');
+              elCon = document.querySelectorAll('main > div'),
+              elBtns = document.querySelectorAll('aside > button');
 
         let move=0;
-        elCon.forEach(function(elcontent,key){
-          elAside.innerHTML +='<button></button>';
-          elcontent.addEventListener('mousewheel',function(){
-            animation(key);
-          })
-        })
-
         let idx=0;
-        const elBtns = document.querySelectorAll('aside button');
         elBtns.forEach(function(btn,key){
           btn.addEventListener('click',function(){
             animation(key);
@@ -360,45 +361,30 @@
           elBtns[key].classList.add('active');
           idx=key;
         }
+        
         update(0)
-        function animation(key){
-          if(key==5){
+        function animation(idx){
+          window.addEventListener('scroll',function(){
             if(event.wheelDelta<0){
-              move=elCon[4].nextElementSibling.offsetTop+135;
-              key++;
-              console.log('ajsh',key)
-            }
-            else if(event.wheelDelta>0){
-              move=elCon[key].previousElementSibling.offsetTop;
-              key--;
-            }
-            update(key);
-            elMain.style = `transform : translateY(-${move}px)`;
-          }else if(key==6){
-            // if(event.wheelDelta>0){
-            //   key--;
-            // }
-            // update(key);
-            // elMain.style = `transform : translateY(-${move}px)`;
-            console.log('aaa')
-          }else{
-            try{
-              if(event.wheelDelta<0){
-                move=elCon[key].nextElementSibling.offsetTop;
-                key++;
-              }else if(event.wheelDelta>0){
-                move=elCon[key].previousElementSibling.offsetTop;
-                key--;
+              if(idx<6){
+                move = elCon[idx].nextElementSibling.offsetTop;
+                idx++;
               }
-              else{
-                move=elCon[key].offsetTop;
-              };
-              console.log(key)
-            }catch{ }
-            elMain.style = `transform : translateY(-${move}px)`;
-            update(key)
-          }
+            }else if(event.wheelDelta>0){
+              if(idx>0){
+                move = elCon[idx].previousElementSibling.offsetTop;
+                idx--;
+              }
+            }else{
+              move=elCon[idx].offsetTop;
+            }
+            console.log(idx);
+            elMain.style=`transform:translateY(-${move}px)`;
+            
+            update(idx);
+          })
         }
+
       })
 </script>
 

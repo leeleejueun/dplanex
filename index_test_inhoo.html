@@ -24,9 +24,17 @@
   <body>
     <!--aside-->
 
-    <aside></aside>
+    <aside>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+    </aside>
 
-    <!--main-->
+  <!--main-->
     <main>
       <div class="content01">
         <div class="content01-container">
@@ -334,75 +342,48 @@
 
     <!-- 전체 페이지 스크롤 -->
     <script>
-      window.addEventListener('load',function(){
-        const elMain = document.querySelector('main'),
-              elAside = document.querySelector('aside'),
-              elCon = document.querySelectorAll('main > div');
+      const elMain = document.querySelector('main'),
+            elCon = document.querySelectorAll('main >div'),
+            elBtn = document.querySelectorAll('aside button');
 
-        let move=0;
-        elCon.forEach(function(elcontent,key){
-          elAside.innerHTML +='<button></button>';
-          elcontent.addEventListener('mousewheel',function(){
-            animation(key);
-          })
-        })
-
-        let idx=0;
-        const elBtns = document.querySelectorAll('aside button');
-        elBtns.forEach(function(btn,key){
-          btn.addEventListener('click',function(){
-            animation(key);
-          })
-        })
-
-        function update(key){
-          elBtns[idx].classList.remove('active');
-          elBtns[key].classList.add('active');
-          idx=key;
-        }
-        update(0)
-        function animation(key){
-          if(key==5){
-            if(event.wheelDelta<0){
-              move=elCon[4].nextElementSibling.offsetTop+135;
-              key++;
-              console.log('ajsh',key)
-            }
-            else if(event.wheelDelta>0){
-              move=elCon[key].previousElementSibling.offsetTop;
-              key--;
-            }
-            update(key);
-            elMain.style = `transform : translateY(-${move}px)`;
-          }else if(key==6){
-            // if(event.wheelDelta>0){
-            //   key--;
-            // }
-            // update(key);
-            // elMain.style = `transform : translateY(-${move}px)`;
-            console.log('aaa')
-          }else{
-            try{
-              if(event.wheelDelta<0){
-                move=elCon[key].nextElementSibling.offsetTop;
-                key++;
-              }else if(event.wheelDelta>0){
-                move=elCon[key].previousElementSibling.offsetTop;
-                key--;
-              }
-              else{
-                move=elCon[key].offsetTop;
-              };
-              console.log(key)
-            }catch{ }
-            elMain.style = `transform : translateY(-${move}px)`;
-            update(key)
-          }
-        }
+            console.log(elCon[0].offsetHeight);
+      let offset = [],
+          pos = {y:0, y2:0, state : true},
+          i = 0,
+          play;
+    
+      console.log(offset);
+      
+      elCon.forEach(function(content){
+        offset.push(content.offsetTop);
       })
-</script>
+      offset[offset.length-1] = offset[offset.length-2]+135
 
+      
+      window.onload = function(){
+        window.addEventListener('scroll',function(){
+          console.log('ajhgd')
+          pos.y = window.pageYOffset;
+          pos.state = (pos.y > pos.y2) ? true : false;
+          pos.y2 = pos.y;
+          
+          clearTimeout(play);
+          play=setTimeout(function(){
+              if(pos.state){
+                  if(i<6)i++;
+              }else{
+                  if(i>0)i--;
+              }
+              elMain.style = `transform:translateY(-${offset[i]}px)`;
+          },100);
+        })
+        elBtn.forEach(function(btn,key){
+          btn.addEventListener('click',function(){
+            elMain.style = `transform : translateY(-${offset[key]}px)`;
+          })
+        })
+      }
 
-
+    </script>
   </body>
 </html>
