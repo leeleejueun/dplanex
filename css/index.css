@@ -1,4 +1,15 @@
 /*main*/
+.scroll {
+  opacity: 0;
+  transform: translateY(40%);
+  transition: 1s;
+}
+
+.scroll.active {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
 main {
   overflow: hidden;
   transition: 1s;
