@@ -279,12 +279,15 @@
     let elClick;
     const elMain = document.querySelector('main'),
           elCon = document.querySelectorAll('main >div'),
-          elBtn = document.querySelectorAll('aside button');
+          elBtn = document.querySelectorAll('aside button'),
+          elScroll = document.querySelectorAll('.scroll');
 
 
     window.onload = function () {
       
       elClick = document.querySelectorAll('.header-menu > button');
+
+      console.log(elScroll);//0~3 content2 / 4~7 content3 / 8~10 content4 / 11~14 content5
 
       let offset = [],
         pos = { y: 0, y2: 0, state: true },
@@ -315,8 +318,27 @@
             }
             
             elMain.style = `transform:translateY(-${offset[i]}px)`;
-            update(i);
+            let bb=[];
+            elScroll.forEach(function(ani,key){
+              if(offset[i]+window.innerHeight > ani.offsetTop){
+                bb.push(ani);
+              }
+            })
 
+            for(let a=0;a<bb.length;a++){
+              setInterval(() => {
+                // if(elScroll.classList.contains('show')){
+                //   elscroll.classList.remove('show');
+                // }else{
+                  elScroll[a].classList.add('show');
+                  
+                // }
+              }, 500*a);
+            }
+            
+            
+            update(i);
+            
           },100)
       })
 

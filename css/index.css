@@ -1,15 +1,4 @@
 /*main*/
-.scroll {
-  opacity: 0;
-  transform: translateY(40%);
-  transition: 1s;
-}
-
-.scroll.active {
-  opacity: 1;
-  transform: translateY(0%);
-}
-
 main {
   overflow: hidden;
   transition: 1s;
@@ -517,6 +506,17 @@ main .content06 .content06-image img:nth-child(2) {
 aside button.active {
   transition: 0.3s;
   transform: scale(3.3);
+}
+
+.scroll {
+  opacity: 0;
+  transform: translateY(40%);
+  transition: 1s;
+}
+
+.scroll.show {
+  opacity: 1;
+  transform: translateY(0%);
 }
 
 /********************************************************************************************/
