@@ -177,10 +177,10 @@
             DPLANEX에서<br />
             "?"와 "!"를 발견하셨나요?
           </p>
-          <div class="content04-image content04-image-mobile">
+          <div class="content04-image content04-image-mobile scroll">
             <img src="img/section4_logo_content04.svg" alt="DPLANEX" />
-            <img class="cont04-img01" src="img/p_img_content04.svg" alt="?" />
-            <img class="cont04-img02" src="img/x_line_img_content04.svg" alt="!" />
+            <img class="cont04-img01 surprise" src="img/p_img_content04.svg" alt="?" />
+            <img class="cont04-img02 surprise2" src="img/x_line_img_content04.svg" alt="!" />
           </div>
           <p class="scroll">
             문화 · 금융을 아우르는 데이터 분석을 통해 필요한 물음(“?”)과
@@ -329,17 +329,14 @@
           }
           if(i==3){
             const LOGO = document.querySelector('.header-logo img');
-            console.log(LOGO.src);
             LOGO.src = "./img/logo_white.svg"
-            console.log(elClick[0]);
           }else{
             const LOGO = document.querySelector('.header-logo img');
-            console.log(LOGO.src);
             LOGO.src = "./img/logo_purple.svg"
           }
           },100)
       })
-
+      let remainScroll=[];
       function showTime(state){
         try{
           let el = elCon[i].querySelectorAll('.scroll');
@@ -353,6 +350,13 @@
           removeElement.forEach(function(ani,key){
             ani.classList.remove('show');
           })
+          // console.log(el) 내일 여쭤보깅
+          // console.log(elScroll)
+          // remainScroll=elScroll.filter(re=>!el.includes(re))
+          // console.log(remainScroll)
+          // remainScroll.forEach(function(ani,key){
+          //  ani.classList.remove('show');
+          //})
           for(let a=0;a<el.length;a++){
             setTimeout(() => {              
               el[a].classList.add('show');
@@ -389,8 +393,8 @@
 
 
 
-내릴때
+<!-- 내릴때
 .해당영역안에 있는 scroll 에 show추가 (그외 삭제)
 
 올릴때
-.해당영역안에 있는 scroll 에 show추가 (그외 삭제)
+.해당영역안에 있는 scroll 에 show추가 (그외 삭제) -->
