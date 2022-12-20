@@ -307,27 +307,37 @@ main{
                 }
             }
             .content04-image{
-                width: calc(37.0833vw);
                 height: 140px;
-                margin: 0 auto;
+                margin: 0 0 0 270px;
                 position: relative;
-                img{
-                    &:nth-child(1){
-                        width: 100%;
-                    }    
+                overflow: hidden;
+                width:0;
+                &.scroll{
+                    opacity: 1;
+                    transition: width 1s;
+                    transform:translateY(0);
                 }
+                &.show{
+                    width: calc(37.0833vw);
+                }
+                // img{
+                //     &:nth-child(1){
+                //     }
+                // }
                 .cont04-img01{
                     position: absolute;
                     top: calc(0.260417vw);
                     left: calc(5.36458vw);
                     width: calc(4.375vw);
-                    transition: all 0.3s linear 0.3s;
-                    }
+                    // transition: all 0.3s linear 0.8s;
+                    transform: scale(0);  
+                }
                 .cont04-img02{
                     width: calc(7.13542vw);
                     position: absolute;
                     right: 0;
                     top: calc(0.260417vw);
+                    transform: scale(0);
                 }
                 
             }
@@ -507,10 +517,18 @@ aside button.active{
     opacity:1;
     transform: translateY(0%);
 }
-
+.show .surprise{
+    animation: oh 0.3s 1s linear forwards;
+}
+.show .surprise2{
+    animation: oh 0.3s 1.4s linear forwards;
+}
 /********************************************************************************************/ 
 
-
+@keyframes oh {
+    0%{transform: scale(0);}
+    100%{transform: scale(1);}
+}
 
 @keyframes upDown3 {
     0%{transform: translateY(-15px);}

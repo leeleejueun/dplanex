@@ -316,26 +316,33 @@ main .content04 .content04-container .content04-text .content04-image-mobile {
   display: none;
 }
 main .content04 .content04-container .content04-image {
-  width: 37.0833vw;
   height: 140px;
-  margin: 0 auto;
+  margin: 0 0 0 270px;
   position: relative;
+  overflow: hidden;
+  width: 0;
 }
-main .content04 .content04-container .content04-image img:nth-child(1) {
-  width: 100%;
+main .content04 .content04-container .content04-image.scroll {
+  opacity: 1;
+  transition: width 1s;
+  transform: translateY(0);
+}
+main .content04 .content04-container .content04-image.show {
+  width: 37.0833vw;
 }
 main .content04 .content04-container .content04-image .cont04-img01 {
   position: absolute;
   top: 0.260417vw;
   left: 5.36458vw;
   width: 4.375vw;
-  transition: all 0.3s linear 0.3s;
+  transform: scale(0);
 }
 main .content04 .content04-container .content04-image .cont04-img02 {
   width: 7.13542vw;
   position: absolute;
   right: 0;
   top: 0.260417vw;
+  transform: scale(0);
 }
 main .content05 {
   width: 100%;
@@ -519,7 +526,33 @@ aside button.active {
   transform: translateY(0%);
 }
 
+.show .surprise {
+  -webkit-animation: oh 0.3s 1s linear forwards;
+          animation: oh 0.3s 1s linear forwards;
+}
+
+.show .surprise2 {
+  -webkit-animation: oh 0.3s 1.4s linear forwards;
+          animation: oh 0.3s 1.4s linear forwards;
+}
+
 /********************************************************************************************/
+@-webkit-keyframes oh {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes oh {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 @-webkit-keyframes upDown3 {
   0% {
     transform: translateY(-15px);
